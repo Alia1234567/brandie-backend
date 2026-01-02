@@ -1,6 +1,6 @@
-import { Response, NextFunction } from 'express';
+import {Response, NextFunction} from 'express';
 import followService from '../services/follow.service';
-import { AuthRequest } from '../middlewares/auth.middleware';
+import {AuthRequest} from '../middlewares/auth.middleware';
 
 export class FollowController {
   async follow(req: AuthRequest, res: Response, next: NextFunction) {

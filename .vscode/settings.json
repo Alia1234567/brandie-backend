@@ -1,0 +1,30 @@
+{
+  "files.exclude": {
+    "**/.cursor": true,
+    "**/.cursor/**": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/.prisma": true,
+    "**/*.map": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+  "search.exclude": {
+    "**/.cursor": true,
+    "**/.cursor/**": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.git": true,
+    "**/.prisma": true,
+    "**/*.map": true
+  },
+  "files.watcherExclude": {
+    "**/.cursor/**": true,
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/.git/**": true
+  }
+}
+
+

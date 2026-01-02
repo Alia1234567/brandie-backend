@@ -4,5 +4,6 @@ dist/
 .env.*
 .prisma
 .cursor/
-.vscode/
+.vscode/*
+!.vscode/settings.json
 nul

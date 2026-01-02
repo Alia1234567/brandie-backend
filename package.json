@@ -11,8 +11,7 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "prisma:seed": "tsx prisma/seed.ts",
-    "test:api": "tsx test-api.ts"
+    "prisma:seed": "tsx prisma/seed.ts"
   },
   "keywords": [
     "social-media",
@@ -25,7 +24,6 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.7.1",
-    "axios": "^1.13.2",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
