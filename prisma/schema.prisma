@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  username     String    @unique
+  passwordHash String    @map("password_hash")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  posts            Post[]            @relation("UserPosts")
+  followers        Follow[]          @relation("Follower")
+  following        Follow[]          @relation("Following")
+
+  @@index([email])
+  @@index([username])
+  @@map("users")
+}
+
+model Follow {
+  followerId  String   @map("follower_id")
+  followingId String   @map("following_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  follower  User @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following User @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+  @@map("follows")
+}
+
+model Post {
+  id        String      @id @default(uuid())
+  userId    String      @map("user_id")
+  content   String
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
+
+  // Relations
+  user      User        @relation("UserPosts", fields: [userId], references: [id], onDelete: Cascade)
+  media     PostMedia[]
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("posts")
+}
+
+model PostMedia {
+  id        String   @id @default(uuid())
+  postId    String   @map("post_id")
+  mediaUrl  String   @map("media_url")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@map("post_media")
+}
+
